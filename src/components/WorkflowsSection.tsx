@@ -1,217 +1,74 @@
 import { useState } from "react"
-import { ChevronLeft, ChevronRight, Plus, ArrowRight, MessageSquare, GitBranch, X, Puzzle, Figma } from "lucide-react"
+import { ChevronLeft, ChevronRight, User, FileText, Image, Calendar, ArrowRight } from "lucide-react"
 
 const carouselCards = [
   {
     id: 1,
-    category: "Запросы клиентов",
-    title: "Создавайте то, что нужно клиентам",
-    icon: ArrowRight,
-    mockup: "intercom",
+    category: "Архив #1",
+    title: "Пустой архив",
+    icon: User,
+    mockup: "empty",
   },
   {
     id: 2,
-    category: "Git-интеграция",
-    title: "Автоматизируйте PR и коммиты",
-    icon: Plus,
-    mockup: "github",
+    category: "Архив #2",
+    title: "Пустой архив",
+    icon: User,
+    mockup: "empty",
   },
   {
     id: 3,
-    category: "Orbit Mobile",
-    title: "Управляйте работой откуда угодно",
-    icon: ArrowRight,
-    mockup: "mobile",
+    category: "Архив #3",
+    title: "Пустой архив",
+    icon: User,
+    mockup: "empty",
   },
   {
     id: 4,
-    category: "Orbit Asks",
-    title: "Превращайте запросы в задачи",
-    icon: ArrowRight,
-    mockup: "asks",
+    category: "Архив #4",
+    title: "Пустой архив",
+    icon: User,
+    mockup: "empty",
   },
   {
     id: 5,
-    category: "Интеграции Orbit",
-    title: "100+ способов расширить возможности",
-    icon: ArrowRight,
-    mockup: "integrations",
-  },
-  {
-    id: 6,
-    category: "Интеграция с Figma",
-    title: "Связь между разработкой и дизайном",
-    icon: ArrowRight,
-    mockup: "figma",
-  },
-  {
-    id: 7,
-    category: "Для разработчиков",
-    title: "Создавайте плагины через Orbit API",
-    icon: ArrowRight,
-    mockup: "api",
+    category: "Архив #5",
+    title: "Пустой архив",
+    icon: User,
+    mockup: "empty",
   },
 ]
 
-function IntercomMockup() {
+function EmptyMockup() {
   return (
     <div className="flex flex-col gap-3 p-4">
       <div className="flex items-center gap-2 text-xs text-zinc-400">
-        <MessageSquare className="w-3.5 h-3.5" />
-        <span>Intercom</span>
-        <span className="text-zinc-600">·</span>
-        <span className="text-zinc-500">sarah@example.com</span>
+        <User className="w-3.5 h-3.5" />
+        <span>Пустой архив</span>
       </div>
-      <p className="text-sm text-zinc-300">
-        Нужна разбивка затрат <span className="text-zinc-500">по...</span>
-      </p>
 
-      <div className="mt-2 flex items-center gap-2 bg-zinc-800/50 rounded-lg px-3 py-2">
-        <div className="w-5 h-5 bg-zinc-700 rounded flex items-center justify-center">
-          <span className="text-[10px] text-zinc-400">A</span>
+      <div className="mt-2 space-y-2">
+        <div className="flex items-center gap-2 px-3 py-2">
+          <FileText className="w-4 h-4 text-zinc-600" />
+          <span className="text-sm text-zinc-500">Документы: 0</span>
         </div>
-        <span className="text-sm text-zinc-300">ACME</span>
-        <span className="text-xs text-zinc-500">Новый запрос</span>
-      </div>
 
-      <div className="mt-1 flex items-center gap-2 bg-zinc-800/30 rounded-lg px-3 py-2">
-        <div className="w-5 h-5 bg-yellow-500/20 rounded flex items-center justify-center">
-          <span className="text-[10px] text-yellow-500">◆</span>
+        <div className="flex items-center gap-2 px-3 py-2">
+          <Image className="w-4 h-4 text-zinc-600" />
+          <span className="text-sm text-zinc-500">Фото: 0</span>
         </div>
-        <span className="text-sm text-zinc-400">Мультиоблачные</span>
-        <span className="text-xs text-zinc-500">затраты</span>
-      </div>
 
-      <div className="mt-1 flex items-center gap-2 px-3 py-2">
-        <div className="w-4 h-4 rounded-full border border-zinc-600" />
-        <span className="text-sm text-zinc-500">Планирование</span>
-        <div className="ml-2 flex items-center gap-1 text-xs text-zinc-600">
-          <span>Q4 2025</span>
+        <div className="flex items-center gap-2 px-3 py-2">
+          <Calendar className="w-4 h-4 text-zinc-600" />
+          <span className="text-sm text-zinc-500">События: 0</span>
         </div>
-      </div>
-    </div>
-  )
-}
-
-function GitHubMockup() {
-  return (
-    <div className="flex flex-col gap-2 p-4">
-      <div className="flex items-center gap-2 text-xs">
-        <GitBranch className="w-3.5 h-3.5 text-zinc-500" />
-        <span className="text-zinc-400">#20319</span>
-        <span className="text-zinc-500">igor/lin 15287</span>
-        <span className="text-blue-400/70">add sourc...</span>
-      </div>
-
-      <div className="mt-3 space-y-2">
-        <div className="flex items-center gap-2 text-xs">
-          <span className="text-zinc-600">↗</span>
-          <span className="text-zinc-500">igor</span>
-          <span className="text-zinc-600">связал</span>
-          <span className="text-blue-400/70">igor/lin 15287</span>
-          <span className="text-zinc-600">add sou...</span>
-        </div>
-        <div className="flex items-center gap-2 text-xs">
-          <span className="text-zinc-600">↗</span>
-          <span className="text-zinc-500">igor</span>
-          <span className="text-zinc-600">изменил статус с В работе...</span>
-        </div>
-        <div className="flex items-center gap-2 text-xs">
-          <span className="text-zinc-600">↗</span>
-          <span className="text-zinc-500">GitHub</span>
-          <span className="text-zinc-600">изменил статус с На ревью...</span>
-        </div>
-        <div className="flex items-center gap-2 text-xs">
-          <span className="text-zinc-600">↗</span>
-          <span className="text-zinc-500">igor</span>
-          <span className="text-zinc-600">изменил статус с Готово...</span>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function MobileMockup() {
-  return (
-    <div className="flex items-center justify-center h-full">
-      <div className="relative w-32 h-56 bg-zinc-900 rounded-2xl border border-zinc-700 overflow-hidden">
-        <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-1 bg-zinc-800 rounded-full" />
-        <div className="mt-6 px-3">
-          <div className="text-[10px] text-zinc-400 mb-2">Входящие</div>
-          <div className="space-y-1.5">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="h-6 bg-zinc-800/50 rounded" />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function AsksMockup() {
-  return (
-    <div className="flex items-center justify-center h-full">
-      <div className="w-24 h-24 rounded-2xl bg-zinc-800 flex items-center justify-center">
-        <X className="w-12 h-12 text-zinc-400" strokeWidth={2.5} />
-      </div>
-    </div>
-  )
-}
-
-function IntegrationsMockup() {
-  return (
-    <div className="flex items-center justify-center h-full">
-      <div className="grid grid-cols-2 gap-2">
-        {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="w-10 h-10 rounded-lg bg-zinc-800/50 flex items-center justify-center">
-            <Puzzle className="w-5 h-5 text-zinc-500" />
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-function FigmaMockup() {
-  return (
-    <div className="flex items-center justify-center h-full">
-      <div className="relative">
-        <Figma className="w-16 h-16 text-zinc-400" />
-      </div>
-    </div>
-  )
-}
-
-function ApiMockup() {
-  return (
-    <div className="flex items-center justify-center h-full">
-      <div className="bg-zinc-800/50 rounded-lg px-4 py-2 border border-zinc-700/50">
-        <span className="text-xs font-mono text-zinc-400">ORBIT API</span>
       </div>
     </div>
   )
 }
 
 function CardMockup({ type }: { type: string }) {
-  switch (type) {
-    case "intercom":
-      return <IntercomMockup />
-    case "github":
-      return <GitHubMockup />
-    case "mobile":
-      return <MobileMockup />
-    case "asks":
-      return <AsksMockup />
-    case "integrations":
-      return <IntegrationsMockup />
-    case "figma":
-      return <FigmaMockup />
-    case "api":
-      return <ApiMockup />
-    default:
-      return null
-  }
+  return <EmptyMockup />
 }
 
 export function WorkflowsSection() {
@@ -243,82 +100,89 @@ export function WorkflowsSection() {
             {/* Orange indicator */}
             <div className="flex items-center gap-2 mb-6">
               <div className="w-2 h-2 rounded-full bg-orange-500" />
-              <span className="text-sm text-zinc-400">Процессы и интеграции</span>
+              <span className="text-sm text-zinc-400">Архивы людей</span>
               <ChevronRight className="w-4 h-4 text-zinc-600" />
             </div>
 
             {/* Heading */}
             <h2 className="text-4xl md:text-5xl font-medium text-white leading-[1.1]">
-              Работайте слаженно
+              Готовые шаблоны
               <br />
-              между инструментами
+              для ваших архивов
             </h2>
           </div>
 
           {/* Description */}
-          <p className="text-zinc-400 lg:max-w-sm lg:pt-12">
-            Расширьте возможности Orbit с помощью интеграций, которые синхронизируют всю команду и держат фокус на
-            главном.
-          </p>
-        </div>
-
-        {/* Carousel */}
-        <div className="relative overflow-hidden">
-          <div
-            className="flex gap-4 transition-transform duration-300 ease-out"
-            style={{ transform: `translateX(-${scrollPosition * (100 / 4)}%)` }}
-          >
-            {carouselCards.map((card) => (
-              <div key={card.id} className="flex-shrink-0 w-[calc(25%-12px)] min-w-[280px]">
-                <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl overflow-hidden h-[340px] flex flex-col">
-                  {/* Mockup area */}
-                  <div className="flex-1 relative overflow-hidden">
-                    <CardMockup type={card.mockup} />
-                    {/* Fade overlay */}
-                    <div
-                      className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none"
-                      style={{
-                        background: "linear-gradient(to top, rgba(9,9,11,0.9), transparent)",
-                      }}
-                    />
-                  </div>
-
-                  {/* Card footer - refactored for proper icon alignment */}
-                  <div className="p-4 border-t border-zinc-800/30">
-                    <div className="flex items-center justify-between gap-3">
-                      {/* Text content */}
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs text-zinc-500 mb-1">{card.category}</p>
-                        <p className="text-sm text-zinc-200 leading-snug">{card.title}</p>
-                      </div>
-                      {/* Icon button - fixed size, vertically centered */}
-                      <button className="flex-shrink-0 w-8 h-8 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-500 hover:text-zinc-300 hover:border-zinc-600 transition-colors">
-                        <card.icon className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="lg:max-w-md">
+            <p className="text-zinc-400 text-base leading-relaxed mb-6">
+              Каждый архив готов к заполнению. Добавляйте информацию, фотографии и материалы о людях из вашего комьюнити.
+            </p>
           </div>
         </div>
 
-        {/* Navigation arrows */}
-        <div className="flex items-center justify-center gap-2 mt-8">
-          <button
-            onClick={scrollLeft}
-            className="w-10 h-10 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-500 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-            disabled={scrollPosition === 0}
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={scrollRight}
-            className="w-10 h-10 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-500 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-            disabled={scrollPosition >= carouselCards.length - 4}
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+        {/* Carousel */}
+        <div className="relative">
+          {/* Navigation buttons */}
+          <div className="flex justify-end gap-2 mb-6">
+            <button
+              onClick={scrollLeft}
+              disabled={scrollPosition === 0}
+              className="w-10 h-10 rounded-lg bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 flex items-center justify-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              <ChevronLeft className="w-5 h-5 text-zinc-400" />
+            </button>
+            <button
+              onClick={scrollRight}
+              disabled={scrollPosition >= carouselCards.length - 4}
+              className="w-10 h-10 rounded-lg bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 flex items-center justify-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              <ChevronRight className="w-5 h-5 text-zinc-400" />
+            </button>
+          </div>
+
+          {/* Cards container */}
+          <div className="overflow-hidden">
+            <div
+              className="flex gap-3 transition-transform duration-500 ease-out"
+              style={{
+                transform: `translateX(-${scrollPosition * (100 / 4 + 0.75)}%)`,
+              }}
+            >
+              {carouselCards.map((card) => {
+                const Icon = card.icon
+                return (
+                  <div
+                    key={card.id}
+                    className="flex-shrink-0 w-[calc(25%-9px)] bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden hover:border-zinc-700 transition-colors cursor-pointer"
+                    style={{ minWidth: "280px" }}
+                  >
+                    {/* Card header */}
+                    <div className="p-4 border-b border-zinc-800">
+                      <div className="flex items-center gap-2 text-xs text-zinc-500 mb-2">
+                        <span>{card.category}</span>
+                        <span className="text-zinc-700">·</span>
+                        <span className="flex items-center gap-1">
+                          Пусто <ArrowRight className="w-3 h-3" />
+                        </span>
+                      </div>
+                      <h3 className="text-white font-medium text-base">{card.title}</h3>
+                    </div>
+
+                    {/* Card content */}
+                    <div className="h-48 bg-zinc-900/30">
+                      <CardMockup type={card.mockup} />
+                    </div>
+
+                    {/* Card footer */}
+                    <div className="p-4 border-t border-zinc-800/50 flex items-center justify-between">
+                      <span className="text-xs text-zinc-500">Ожидает заполнения</span>
+                      <Icon className="w-4 h-4 text-zinc-600" />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
